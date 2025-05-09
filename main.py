@@ -8,7 +8,7 @@ def get_days_from_today(date:str) -> int:
         - takes one parameter in date format 'YYYY-MM-DD';
         - outputs integer number of days betwen some days to today (if the some date is later then the current one, the result is negative);
         - only days are taken into account, hours, min. etc. are ignored;
-     ****НАРАЗІ НЕ ЗРОЗУМІВ ПОВЕРНУТИСЬ ПІЗНІШЕ*****- function should handle incorrect input data format.
+        - function should handle incorrect input data format.
 
     Input:
     :param date: string
@@ -16,46 +16,39 @@ def get_days_from_today(date:str) -> int:
     Output:
     :return: integer
     """
+    try:
+        date_in_datetime = (datetime.strptime(date, '%Y-%m-%d').date())
+    except ValueError:
+        print (f"\nUnknown format of date: '{date}'.\nPlease correct it and try againe!\n")
+    else:
+#        today_date = datetime.strptime('2021.05.05', '%Y.%m.%d').date() #ДЛЯ ТЕСТУВАННЯ, Вказання конкретної дати
+        today_date = datetime.now().date()
+        diff_day = (date_in_datetime - today_date).days
+#        print (date_in_datetime, type(date_in_datetime), today_date, type(today_date), diff_day, type(diff_day), sep='\t-----\t') #ДЛЯ ТЕСТУВАННЯ, перевірка виводу і типу даних
+        return diff_day
 
-    date_in_datetime = (datetime.strptime(date, '%Y-%m-%d').date())
-#    today_date = datetime.strptime('2021.05.05', '%Y.%m.%d').date() #для вказання дати при перевірці
-    today_date = datetime.now().date()
-    diff_day = (date_in_datetime - today_date).days
-#    print (date_in_datetime, type(date_in_datetime), today_date, type(today_date), diff_day, type(diff_day), sep='\t-----\t') #для перевірки роботи
-    return diff_day
-
-get_days_from_today('2021-10-09')
+#get_days_from_today('2021-10-09')  #ДЛЯ ТЕСТУВАННЯ, тестовий виклик 
+#get_days_from_today('2asd')    #ДЛЯ ТЕСТУВАННЯ, тестовий виклик 
+#get_days_from_today('2021-10-09')  #ДЛЯ ТЕСТУВАННЯ, тестовий виклик 
+#get_days_from_today('23.01.2202')  #ДЛЯ ТЕСТУВАННЯ, тестовий виклик 
 
 
 """
-
-
 Друге завдання
-
-
-
-Щоб виграти головний приз лотереї, необхідний збіг кількох номерів на лотерейному квитку з числами, що випали випадковим чином і в певному діапазоні під час чергового тиражу. Наприклад, необхідно вгадати шість чисел від 1 до 49 чи п'ять чисел від 1 до 36 тощо.
-
-
+Щоб виграти головний приз лотереї, необхідний збіг кількох номерів на лотерейному квитку з числами, що випали випадковим чином і 
+в певному діапазоні під час чергового тиражу. 
+Наприклад, необхідно вгадати шість чисел від 1 до 49 чи п'ять чисел від 1 до 36 тощо.
 
 Вам необхідно написати функцію get_numbers_ticket(min, max, quantity), яка допоможе генерувати набір унікальних випадкових чисел для таких лотерей.
-
-
-
 Вона буде повертати випадковий набір чисел у межах заданих параметрів, причому всі випадкові числа в наборі повинні бути унікальні.
 
-
-
 Вимоги до завдання:
-
-
-
-Параметри функції:
+1. Параметри функції:
 min - мінімальне можливе число у наборі (не менше 1).
 max - максимальне можливе число у наборі (не більше 1000).
 quantity - кількість чисел, які потрібно вибрати (значення між min і max).
-Функція генерує вказану кількість унікальних чисел у заданому діапазоні.
-Функція повертає список випадково вибраних, відсортованих чисел. Числа в наборі не повинні повторюватися. Якщо параметри не відповідають заданим обмеженням, функція повертає пустий список.
+2.Функція генерує вказану кількість унікальних чисел у заданому діапазоні.
+3.Функція повертає список випадково вибраних, відсортованих чисел. Числа в наборі не повинні повторюватися. Якщо параметри не відповідають заданим обмеженням, функція повертає пустий список.
 
 
 Рекомендації для виконання:
