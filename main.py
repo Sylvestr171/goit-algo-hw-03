@@ -27,7 +27,6 @@ def get_days_from_today(date:str) -> int:
         date_in_datetime = (datetime.strptime(date, '%Y-%m-%d').date()) #перетворення рядка дати в об'єкт datetime
     except ValueError:
         print (f"\nUnknown format of date: '{date}'.\nPlease correct it and try againe!\n") #вивід повідомлення при перехопленні помилки
-        return
     else:
 #        today_date = datetime.strptime('2021.05.05', '%Y.%m.%d').date() #ДЛЯ ТЕСТУВАННЯ, Вказання конкретної дати
         today_date = datetime.now().date() #створення змінної з поточною датою
@@ -35,14 +34,17 @@ def get_days_from_today(date:str) -> int:
 #        print (date_in_datetime, type(date_in_datetime), today_date, type(today_date), diff_day, type(diff_day), sep='\t-----\t') #ДЛЯ ТЕСТУВАННЯ, перевірка виводу і типу даних
         return diff_day
 
-print (get_days_from_today('2021-10-09'))  #ДЛЯ ТЕСТУВАННЯ, тестовий виклик 
-print (get_days_from_today('2asd'))    #ДЛЯ ТЕСТУВАННЯ, тестовий виклик 
-print (get_days_from_today('2025-10-09'))  #ДЛЯ ТЕСТУВАННЯ, тестовий виклик 
-print (get_days_from_today('23.01.2202'))  #ДЛЯ ТЕСТУВАННЯ, тестовий виклик 
-'''
+'''Початок тестового блоку'''
+test_date = ['2021-10-09', '2asd', '2025-10-09', '23.01.2202'] #ДЛЯ ТЕСТУВАННЯ, тестові дані
+days_from_today = []
+for date in test_date:
+    days_from_today.append(get_days_from_today(date))
+print (days_from_today) #ДЛЯ ТЕСТУВАННЯ, тестовий вивід
+'''Кінець тестового блоку'''
+
 #->->->->->->->->->->***SECOND TASK***<-<-<-<-<-<-<-<-<-<
 
-print ('\n\n\n\t\t\tSECOND TASK\n\n\n')
+print ('\n\tSECOND TASK\n')
 
 # A function that return a set of random unique (within the same set) numbers within the specified parametres
 def get_numbers_ticket(min:int, max:int, quantity:int) -> list:
@@ -77,13 +79,18 @@ def get_numbers_ticket(min:int, max:int, quantity:int) -> list:
         list_of_sorted_random_number = list(sorted(set_of_random_number)) #перетворення множини на список
     return list_of_sorted_random_number
 
-lottery_numbers = get_numbers_ticket(1, 49, 6)    #ДЛЯ ТЕСТУВАННЯ, тестовий виклик
-print("Ваші лотерейні числа:", lottery_numbers)    #ДЛЯ ТЕСТУВАННЯ, тестовий виклик
-
+'''Початок тестового блоку'''
+lottery_numbers = get_numbers_ticket(1, 49, 6)    #ДЛЯ ТЕСТУВАННЯ, тестовий виклик1
+print("Ваші лотерейні числа:", lottery_numbers)    #ДЛЯ ТЕСТУВАННЯ, тестовий виклик1
+lottery_numbers = get_numbers_ticket(1, 100, 7)    #ДЛЯ ТЕСТУВАННЯ, тестовий виклик2
+print("Ваші лотерейні числа:", lottery_numbers)    #ДЛЯ ТЕСТУВАННЯ, тестовий виклик2
+lottery_numbers = get_numbers_ticket(0, 4256, 68)    #ДЛЯ ТЕСТУВАННЯ, тестовий виклик3
+print("Ваші лотерейні числа:", lottery_numbers)    #ДЛЯ ТЕСТУВАННЯ, тестовий виклик3
+'''Кінець тестового блоку'''
 
 #->->->->->->->->->->***THIRD TASK (optional)***<-<-<-<-<-<-<-<-<-<
 
-print ('\n\n\n\tTHIRD TASK\n\n\n')
+print ('\n\tTHIRD TASK\n')
 
 #Function for normilize phone number format
 def normalize_phone(phone_number:str) -> str:
@@ -111,10 +118,10 @@ def normalize_phone(phone_number:str) -> str:
 
     return cleaned_number #повертаємо рядок з чистим номером
 
-
+'''Початок тестового блоку'''
 raw_numbers = [    "067\\t123 4567",    "(095) 234-5678\\n",    "+380 44 123 4567",    "380501234567",    "    +38(050)123-32-34",
     "     0503451234",    "(050)8889900",    "38050-111-22-22",    "38050 111 22 11   ",]     #ДЛЯ ТЕСТУВАННЯ, тестові дані
 
 sanitized_numbers = [normalize_phone(num) for num in raw_numbers]    #ДЛЯ ТЕСТУВАННЯ, тестовий виклик
-print("Нормалізовані номери телефонів для SMS-розсилки:", sanitized_numbers)     #ДЛЯ ТЕСТУВАННЯ, тестовий виклик
-'''
+print("Нормалізовані номери телефонів для SMS-розсилки:\n", sanitized_numbers)     #ДЛЯ ТЕСТУВАННЯ, тестовий виклик
+'''Кінець тестового блоку'''
