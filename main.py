@@ -68,24 +68,36 @@ def get_numbers_ticket(min:int, max:int, quantity:int) -> list:
     :return: list
     """
 
-    if min < 1 or max > 1000 or min > max or min > quantity > max: #Перевірка умов параметрів, додав 'min > max'
-        list_of_sorted_random_number = [] #створює пустий список
-    else:
+    if min >= 1 and max <= 1000 and max > quantity > min: #Перевірка умов параметрів
         set_of_random_number = set() #ініціалізуємо множину в яку будемо генерувати числа
         while len(set_of_random_number) != quantity: #запускаємо цикл який працюватиме до досягнення множиною визначеної довжини
             set_of_random_number.add(randint(min, max)) #власне генерація значень
-
 #        print(sorted(list(set_of_random_number)), type(set_of_random_number))   #ДЛЯ ТЕСТУВАННЯ, перевірка сформованої множни і типів даних
         list_of_sorted_random_number = list(sorted(set_of_random_number)) #перетворення множини на список
+    else:
+        list_of_sorted_random_number = [] #створює пустий список
+    
     return list_of_sorted_random_number
 
 '''Початок тестового блоку'''
-lottery_numbers = get_numbers_ticket(1, 49, 6)    #ДЛЯ ТЕСТУВАННЯ, тестовий виклик1
+lottery_numbers = get_numbers_ticket(1, 49, 6)    #ДЛЯ ТЕСТУВАННЯ, тестовий виклик1, відповідає параметрам
+print('Тест 1 (Параметри ОК)')
 print("Ваші лотерейні числа:", lottery_numbers)    #ДЛЯ ТЕСТУВАННЯ, тестовий виклик1
-lottery_numbers = get_numbers_ticket(1, 100, 7)    #ДЛЯ ТЕСТУВАННЯ, тестовий виклик2
+lottery_numbers = get_numbers_ticket(1, 10, 11)    #ДЛЯ ТЕСТУВАННЯ, тестовий виклик2, quantity > max
+print('Тест 2 (quantity > max)')
 print("Ваші лотерейні числа:", lottery_numbers)    #ДЛЯ ТЕСТУВАННЯ, тестовий виклик2
-lottery_numbers = get_numbers_ticket(0, 4256, 68)    #ДЛЯ ТЕСТУВАННЯ, тестовий виклик3
+lottery_numbers = get_numbers_ticket(0, 10, 5)    #ДЛЯ ТЕСТУВАННЯ, тестовий виклик3, min < 1
+print('Тест 3 (min < 1)')
 print("Ваші лотерейні числа:", lottery_numbers)    #ДЛЯ ТЕСТУВАННЯ, тестовий виклик3
+lottery_numbers = get_numbers_ticket(2, 10000, 5)    #ДЛЯ ТЕСТУВАННЯ, тестовий виклик4, max > 1000
+print('Тест 4 (max > 1000)')
+print("Ваші лотерейні числа:", lottery_numbers)    #ДЛЯ ТЕСТУВАННЯ, тестовий виклик4
+lottery_numbers = get_numbers_ticket(30, 15, 10)    #ДЛЯ ТЕСТУВАННЯ, тестовий виклик5, min > max
+print('Тест 5 (min > max)')
+print("Ваші лотерейні числа:", lottery_numbers)    #ДЛЯ ТЕСТУВАННЯ, тестовий виклик5
+lottery_numbers = get_numbers_ticket(30, 100, 10)    #ДЛЯ ТЕСТУВАННЯ, тестовий виклик6, quantity < min
+print('Тест 6 (quantity < min)')
+print("Ваші лотерейні числа:", lottery_numbers)    #ДЛЯ ТЕСТУВАННЯ, тестовий виклик6
 '''Кінець тестового блоку'''
 
 #->->->->->->->->->->***THIRD TASK (optional)***<-<-<-<-<-<-<-<-<-<
