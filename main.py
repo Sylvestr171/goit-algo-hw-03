@@ -27,7 +27,6 @@ def get_days_from_today(date:str) -> int:
         date_in_datetime = (datetime.strptime(date, '%Y-%m-%d').date()) #перетворення рядка дати в об'єкт datetime
     except ValueError:
         print (f"\nUnknown format of date: '{date}'.\nPlease correct it and try againe!\n") #вивід повідомлення при перехопленні помилки
-        return
     else:
 #        today_date = datetime.strptime('2021.05.05', '%Y.%m.%d').date() #ДЛЯ ТЕСТУВАННЯ, Вказання конкретної дати
         today_date = datetime.now().date() #створення змінної з поточною датою
